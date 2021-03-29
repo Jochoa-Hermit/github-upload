@@ -13,6 +13,13 @@ namespace New_DISA_Project
             Console.WriteLine("Making a Change");
             Console.WriteLine("Commit");
             Console.WriteLine("Working from a commit");
+            Console.WriteLine(fetchProjectName());
+        }
+        static string fetchProjectName()
+        {
+            string projectName = "myProject";
+
+            return projectName;
         }
     }
 }
