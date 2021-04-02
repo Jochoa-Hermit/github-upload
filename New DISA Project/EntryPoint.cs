@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using New_DISA_Project.ProjectCreators;
 
 namespace New_DISA_Project
 {
@@ -10,16 +11,9 @@ namespace New_DISA_Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Making a Change");
-            Console.WriteLine("Commit");
-            Console.WriteLine("Working from a commit");
-            Console.WriteLine(fetchProjectName());
-        }
-        static string fetchProjectName()
-        {
-            string projectName = "myProject";
+            ProjectCreator newProject = new ProjectCreator();
 
-            return projectName;
+            Console.WriteLine(newProject.MainDirectory);
         }
     }
 }
