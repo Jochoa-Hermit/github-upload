@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 // Namespace and project name should not have the same name
 namespace New_DISA_Project.ProjectCreators
@@ -47,7 +48,7 @@ namespace New_DISA_Project.ProjectCreators
             {
                 return this.projectName;
             }
-            set
+            private set
             {
                 this.projectName = value;
             }
@@ -77,6 +78,54 @@ namespace New_DISA_Project.ProjectCreators
             this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
             this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
             this.containsControl = containsControl;
+        }
+
+        public void SetClienName()
+        {
+            // Check if client name is empty, if it is, then we allow tu set a new client name
+            
+            int clientOptionSelected;
+
+            Console.WriteLine("Choose an Option:\n1. XYLEM\n2. JABIL");
+            Console.WriteLine();
+            clientOptionSelected = Int16.Parse(Console.ReadLine());
+
+            switch (clientOptionSelected) // Eventually instead of hardcoding, add enumerations
+            {
+                case 1:
+                    this.ClientDirectory = "XYLEM";
+                    break;
+
+                case 2:
+                    this.ClientDirectory = "JABIL";
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public void SetProjectName()
+        {
+            // Check if Project name is empty, if it is, then we allow to set a new client name
+
+            Console.WriteLine("Enter the project Name");
+            this.ProjectName = Console.ReadLine();
+        }
+
+        public void CreatesDirectories()
+        {
+            string stringDirectory; // Add backslash via a for loop, add all strings in an array to do this.
+
+            //for (int i = 0; i < length; i++)
+            //{
+
+            //}
+
+            stringDirectory = this.mainDirectory + @"\" + this.clientDirectory + @"\" + this.projectName;
+            Console.WriteLine(stringDirectory);
+
+            Directory.CreateDirectory(stringDirectory);
         }
     }
 }

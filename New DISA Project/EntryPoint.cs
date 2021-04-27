@@ -11,9 +11,23 @@ namespace New_DISA_Project
     {
         static void Main(string[] args)
         {
+            //*********Application Variables*********//
+
             ProjectCreator newProject = new ProjectCreator();
 
-            Console.WriteLine(newProject.MainDirectory);
+            newProject.SetClienName();
+            Console.WriteLine(newProject.ClientDirectory);
+
+            Console.WriteLine();
+
+            newProject.SetProjectName();
+            Console.WriteLine(newProject.ProjectName);
+
+            Console.WriteLine();
+
+            newProject.CreatesDirectories();
+            //newProject.CreatesDirectories
+            //Console.WriteLine(newProject.MainDirectory);
         }
     }
 }
