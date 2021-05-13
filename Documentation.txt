@@ -1,0 +1,16 @@
+Project Creator will actually be directory creator
+ClientProject class will be in charge of actually adding resources
+
+at the begining we have to create the new directory
+
+then we poll the user on what they need, calling the directory class if needed
+
+Create menu selector static clas
+	- this way we only have to call a specific method if a chosen option is selected
+
+	- Arguments
+		- array of options
+		- array of corresponding methods
+
+Perhaps have predetermined directories
+	- then we can copy the whole directory depending on what we need

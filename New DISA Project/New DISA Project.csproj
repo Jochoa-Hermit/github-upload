@@ -46,6 +46,9 @@
     <Compile Include="Consts.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="ProjectCreators\ProjectCreator.cs" />
+    <Compile Include="ClientProjects\ClientProject.cs" />
+    <Compile Include="ClientProjects\JabilProject.cs" />
+    <Compile Include="ClientProjects\XylemProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

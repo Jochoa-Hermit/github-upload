@@ -10,13 +10,25 @@ namespace New_DISA_Project.ProjectCreators
 {
     public class ProjectCreator
     {
+        const string escBSlash = @"\";
+
         // String Fields
         private string mainDirectory;
         private string clientDirectory;
+        // Documentation Fields
+        private string docDirectory;
+        private string projectDocDirectory;
+        private string technicalDocDirectory;
+        // System Fields
+        private string systemDirectory;
+        private string controlDirectory;
+        private string resourceDirectory;
+
         private string projectName;
 
         // Bool Fields
-        private bool containsControl;
+        bool containsControl;
+
 
         public string MainDirectory
         {
@@ -30,7 +42,7 @@ namespace New_DISA_Project.ProjectCreators
             }
         }
 
-        public string ClientDirectory 
+        public string ClientDirectory
         {
             get
             {
@@ -42,7 +54,77 @@ namespace New_DISA_Project.ProjectCreators
             }
         }
 
-        public string ProjectName 
+        public string DocDirectory {
+            get
+            {
+                return this.docDirectory;
+            }
+            private set
+            {
+                this.docDirectory = value;
+            }
+        }
+
+        public string ProjectDocDirectory
+        {
+            get
+            {
+                return this.projectDocDirectory ;
+            }
+            private set
+            {
+                this.projectDocDirectory = value;
+            }
+        }
+
+        public string TechnicalDocDirectory
+        {
+            get
+            {
+                return this.technicalDocDirectory;
+            }
+            private set
+            {
+                this.technicalDocDirectory = value;
+            }
+        }
+
+        public string SystemDirectory { 
+            get
+            {
+                return this.systemDirectory;
+            }
+            private set
+            {
+                this.systemDirectory = value;
+            }
+        }
+
+        public string ControlDirectory
+        {
+            get
+            {
+                return this.controlDirectory;
+            }
+            private set
+            {
+                this.controlDirectory = value;
+            }
+        }
+
+        public string ResourceDirectory
+        {
+            get
+            {
+                return this.resourceDirectory;
+            }
+            private set
+            {
+                this.resourceDirectory = value;
+            }
+        }
+
+        public string ProjectName
         {
             get
             {
@@ -54,13 +136,12 @@ namespace New_DISA_Project.ProjectCreators
             }
         }
 
-        public bool ContainsControl 
-        {
+        public bool ContainsControl {
             get
             {
                 return this.containsControl;
             }
-            private set
+            set
             {
                 this.containsControl = value;
             }
@@ -70,38 +151,46 @@ namespace New_DISA_Project.ProjectCreators
         {
             this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
             this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
-            this.containsControl = Consts.ProjectCreator.CONTAINS_CONTROL;
+            this.containsControl = Consts.ProjectCreator.CONTAINS_CONTROL; // Only create system directory if this is true;
         }
 
-        public ProjectCreator(bool containsControl)
-        {
-            this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
-            this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
-            this.containsControl = containsControl;
-        }
+        //public ProjectCreator(bool containsControl)
+        //{
+        //    this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
+        //    this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
+        //    this.containsControl = containsControl;
+        //}
 
         public void SetClienName()
         {
-            // Check if client name is empty, if it is, then we allow tu set a new client name
-            
+            // Check if client name is empty, if it is, then we allow to set a new client name
+
             int clientOptionSelected;
 
-            Console.WriteLine("Choose an Option:\n1. XYLEM\n2. JABIL");
-            Console.WriteLine();
-            clientOptionSelected = Int16.Parse(Console.ReadLine());
-
-            switch (clientOptionSelected) // Eventually instead of hardcoding, add enumerations
+            if ((this.clientDirectory == null) || (this.clientDirectory == "") || (this.clientDirectory == Consts.ProjectCreator.CLIENT_DIRECTORY))
             {
-                case 1:
-                    this.ClientDirectory = "XYLEM";
-                    break;
+                Console.WriteLine("Choose an Option:\n1. XYLEM\n2. JABIL");
+                Console.WriteLine();
+                clientOptionSelected = Int16.Parse(Console.ReadLine());
 
-                case 2:
-                    this.ClientDirectory = "JABIL";
-                    break;
+                switch (clientOptionSelected) // Eventually instead of hardcoding, add enumerations
+                {
+                    case 1:
+                        this.ClientDirectory = Consts.ProjectCreator.CLIENT_DIR_XYLEM;
+                        break;
 
-                default:
-                    break;
+                    case 2:
+                        this.ClientDirectory = Consts.ProjectCreator.CLIENT_DIR_JABIL;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine($"The Client name has already been set: {this.ClientDirectory}");
             }
         }
 
@@ -123,9 +212,43 @@ namespace New_DISA_Project.ProjectCreators
             //}
 
             stringDirectory = this.mainDirectory + @"\" + this.clientDirectory + @"\" + this.projectName;
-            Console.WriteLine(stringDirectory);
+            //Console.WriteLine(stringDirectory);
 
             Directory.CreateDirectory(stringDirectory);
+
+            CreatesDocumentationDirectory(stringDirectory);
+            CreatesSystemDirectory(stringDirectory);
         }
+
+        private void CreatesDocumentationDirectory(String stringDirectory)
+        {
+            this.docDirectory = stringDirectory + escBSlash + "Documentacion";
+            this.projectDocDirectory = this.docDirectory + escBSlash + "Documentacion_de_Proyecto";
+            this.technicalDocDirectory = this.docDirectory +escBSlash + "Documentacion_Tecnica";
+
+            string[] docDirectoryArray = new string[3] { this.docDirectory, this.projectDocDirectory, this.technicalDocDirectory };
+
+            for (int i = 0; i < docDirectoryArray.Length; i++)
+            {
+                Directory.CreateDirectory(docDirectoryArray[i]);
+            }
+
+            //Directory.CreateDirectory(documentationDirectory);
+        }
+
+        private void CreatesSystemDirectory(String stringDirectory)
+        {
+            this.systemDirectory = stringDirectory + escBSlash + "Sistema";
+            this.controlDirectory = this.systemDirectory + escBSlash + "Control";
+            this.resourceDirectory = this.systemDirectory + escBSlash + "Recursos";
+
+            string[] systemDirectoryArray = new string[3] { this.systemDirectory, this.controlDirectory, this.resourceDirectory };
+
+            for (int i = 0; i < systemDirectoryArray.Length; i++)
+            {
+                Directory.CreateDirectory(systemDirectoryArray[i]);
+            }
+        }
+ 
     }
 }
