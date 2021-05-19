@@ -4,7 +4,11 @@
     {
         public static class ProjectCreator
         {
-            public const string MAIN_DIRECTORY = @"C:\Users\jarvi\Documents\DISA\PROYECTOS";
+            // Thinkpad
+            //public const string MAIN_DIRECTORY = @"C:\Users\jarvi\Documents\DISA\PROYECTOS";
+
+            // Disa Laptop 
+            public const string MAIN_DIRECTORY = @"C:\Users\DISA_Lenovo\Documents\DISA\PROYECTOS";
 
             public const string CLIENT_DIRECTORY = "MISCELLANEOUS";
             public const string CLIENT_DIR_JABIL = "JABIL";

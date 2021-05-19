@@ -192,6 +192,7 @@ namespace New_DISA_Project.ProjectCreators
             {
                 Console.WriteLine($"The Client name has already been set: {this.ClientDirectory}");
             }
+            Console.Clear();
         }
 
         public void SetProjectName()
@@ -200,6 +201,8 @@ namespace New_DISA_Project.ProjectCreators
 
             Console.WriteLine("Enter the project Name");
             this.ProjectName = Console.ReadLine();
+
+            Console.Clear();
         }
 
         public void CreatesDirectories()
@@ -239,7 +242,12 @@ namespace New_DISA_Project.ProjectCreators
         private void CreatesSystemDirectory(String stringDirectory)
         {
             this.systemDirectory = stringDirectory + escBSlash + "Sistema";
-            this.controlDirectory = this.systemDirectory + escBSlash + "Control";
+            this.controlDirectory = this.systemDirectory + escBSlash + "Control"; // We will have a control folder in each type of project, within the control folder we will have another folder with the actual control
+            // For example, we have from our resources folder a folder called Jabil Test Project -> Sistema -> Control -> Jabil Test Scripts
+            // do the same for others Labview Project -> Sistema -> Control -> ftes
+            // This  way when it find the control folder in the new project it will add subfolder to the control folder 
+
+
             this.resourceDirectory = this.systemDirectory + escBSlash + "Recursos";
 
             string[] systemDirectoryArray = new string[3] { this.systemDirectory, this.controlDirectory, this.resourceDirectory };
