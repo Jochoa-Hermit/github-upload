@@ -14,7 +14,7 @@ namespace New_DISA_Project.Project
         {
 
         }
-        public override void ControlSelector()
+        public override void ControlSelector(string projectName, string systemDir, string controlDir)
         {
             int controlSelection, continueAdding;
             bool addMore = true;
@@ -27,6 +27,7 @@ namespace New_DISA_Project.Project
                 {
                     case 1:
                         // Adds Jabil Test Template to file
+                        AddJBTestProject(projectName, systemDir, controlDir);
                         break;
 
                     case 2:
@@ -62,7 +63,31 @@ namespace New_DISA_Project.Project
                 }
                 
             }
+            Console.Clear();
+        }
+
+        private void AddJBTestProject(string projectName, string systemDir, string controlDir)
+        {
+
+            // Instaed of using whole first directory, it just uses systemDir, and to whatever directoryit finds it adds to systemDir
+            CopyFilesRecursively(@"C:\Users\DISA_Lenovo\Documents\DISA\RECURSOS\Sistema\Jabil Test Project\Sistema", systemDir);
+            // Gets all files from the jabil test script directory
+
+            // Should replace all files that contain "nameHere" with the project Name
+            foreach (string fileName in Directory.GetFiles((controlDir + @"\Jabil Test Scripts\"), "*.*", SearchOption.AllDirectories))
+            {
+                if(fileName.Contains("nameHere"))
+                {
+                    File.Move(fileName, fileName.Replace("nameHere", projectName));
+                }
+            }
+        }
+
+        private void AddLabviewProject(string projectName)
+        {
 
         }
+
+        
     }
 }

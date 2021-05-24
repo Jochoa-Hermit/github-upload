@@ -30,7 +30,7 @@ namespace New_DISA_Project.ClientProjects
         //----------------------------------------------------------------------------------------//
 
         //**************************Control Methods**************************//
-        public abstract void ControlSelector();
+        public abstract void ControlSelector(string projectName, string systemDir, string controlDir);
 
 
         //******************************************************************//
@@ -55,7 +55,11 @@ namespace New_DISA_Project.ClientProjects
             switch (docSelector)
             {
                 case 1:
-                    File.Copy(@"C:\Users\jarvi\Documents\DISA\ARCHIVOS DISA\Archivo de Texto.txt", directory);
+                    // Thinkpad
+                    //File.Copy(@"C:\Users\jarvi\Documents\DISA\ARCHIVOS DISA\Archivo de Texto.txt", directory);
+
+                    // Disa Laptop
+                    File.Copy(@"C:\Users\DISA_Lenovo\Documents\DISA\RECURSOS\Documentacion Disa\F-DIS-003 Formato IO'S.xlsx", directory);
                     break;
                 case 2:
 
@@ -63,7 +67,7 @@ namespace New_DISA_Project.ClientProjects
                 default:
                     break;
             }
-
+            Console.Clear();
         }
 
         public void AddManual()
@@ -88,5 +92,19 @@ namespace New_DISA_Project.ClientProjects
 
         //*************************************************************************//
 
+        protected void CopyFilesRecursively(string sourcePath, string targetPath)
+        {
+            foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
+            {  
+                //Console.WriteLine(dirPath);
+                Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
+            }
+
+            foreach (string newPath in Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+            {
+                //Console.WriteLine(newPath);
+                File.Copy(newPath, newPath.Replace(sourcePath, targetPath), true);
+            }
+        }
     }
 }

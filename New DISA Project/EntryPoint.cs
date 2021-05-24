@@ -20,20 +20,20 @@ namespace New_DISA_Project
             JabilProject newClientProject = new JabilProject();
 
             newProject.SetClienName();
-            Console.WriteLine(newProject.ClientDirectory);
+            //Console.WriteLine(newProject.ClientDirectory);
 
-            Console.WriteLine();
 
             newProject.SetProjectName();
-            Console.WriteLine(newProject.ProjectName);
-
-            Console.WriteLine();
+            //Console.WriteLine(newProject.ProjectName);
+            
 
             newProject.CreatesDirectories();
 
-            newClientProject.AddIOSheet((newProject.ProjectDocDirectory + @"\project Sheet.txt")); // we cant just provide the directory
+            newClientProject.AddIOSheet((newProject.ProjectDocDirectory + $@"\F-DIS-003 Formato IO'S {newProject.ProjectName}.xlsx")); // we cant just provide the directory
 
-            Console.WriteLine(Directory.GetCurrentDirectory());
+            newClientProject.ControlSelector(newProject.ProjectName, newProject.SystemDirectory, newProject.ControlDirectory);
+
+            //Console.WriteLine(Directory.GetCurrentDirectory());
 
             //newProject.CreatesDirectories
             //Console.WriteLine(newProject.MainDirectory);
