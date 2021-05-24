@@ -50,7 +50,7 @@
     <Compile Include="ClientProjects\JabilProject.cs" />
     <Compile Include="ClientProjects\XylemProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticMethods.cs" />
+    <Compile Include="StaticClasses\StaticClasses.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
