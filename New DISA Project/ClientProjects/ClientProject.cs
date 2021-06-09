@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using New_DISA_Project.ProjectCreators;
 using System.IO;
+using New_DISA_Project.Interfaces;
+
 
 namespace New_DISA_Project.ClientProjects
 {
-    public abstract class ClientProject
-    {
+    public class ClientProject : ISelector
+    { 
         //**************************Fields**************************//
 
 
@@ -30,8 +32,11 @@ namespace New_DISA_Project.ClientProjects
         //----------------------------------------------------------------------------------------//
 
         //**************************Control Methods**************************//
-        public abstract void ControlSelector(string projectName, string systemDir, string controlDir);
-
+        // Implemented as an interface
+        public void ControlSelector(string projectName, string systemDir, string controlDir)
+        {
+            
+        }
 
         //******************************************************************//
 
@@ -55,11 +60,9 @@ namespace New_DISA_Project.ClientProjects
             switch (docSelector)
             {
                 case 1:
-                    // Thinkpad
-                    //File.Copy(@"C:\Users\jarvi\Documents\DISA\ARCHIVOS DISA\Archivo de Texto.txt", directory);
+                    // Thinkpad // This is set from Const namespace
+                    File.Copy(Consts.ClientProject.IO_SHEET, directory);
 
-                    // Disa Laptop
-                    File.Copy(@"C:\Users\DISA_Lenovo\Documents\DISA\RECURSOS\Documentacion Disa\F-DIS-003 Formato IO'S.xlsx", directory);
                     break;
                 case 2:
 

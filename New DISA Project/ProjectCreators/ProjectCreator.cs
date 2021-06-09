@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using New_DISA_Project.ClientProjects;
+using New_DISA_Project.Project;
 
 // Namespace and project name should not have the same name
 namespace New_DISA_Project.ProjectCreators
@@ -15,6 +17,7 @@ namespace New_DISA_Project.ProjectCreators
         // String Fields
         private string mainDirectory;
         private string clientDirectory;
+        private string clientName;
         // Documentation Fields
         private string docDirectory;
         private string projectDocDirectory;
@@ -28,7 +31,6 @@ namespace New_DISA_Project.ProjectCreators
 
         // Bool Fields
         bool containsControl;
-
 
         public string MainDirectory
         {
@@ -51,6 +53,18 @@ namespace New_DISA_Project.ProjectCreators
             private set
             {
                 this.clientDirectory = value;
+            }
+        }
+
+        public string ClientName
+        {
+            get
+            {
+                return this.clientName;
+            }
+            set
+            {
+                this.clientName = value;
             }
         }
 
@@ -154,12 +168,12 @@ namespace New_DISA_Project.ProjectCreators
             this.containsControl = Consts.ProjectCreator.CONTAINS_CONTROL; // Only create system directory if this is true;
         }
 
-        //public ProjectCreator(bool containsControl)
-        //{
-        //    this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
-        //    this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
-        //    this.containsControl = containsControl;
-        //}
+        public ProjectCreator(bool containsControl)
+        {
+            //this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
+            //this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
+            //this.containsControl = containsControl;
+        }
 
         public void SetClienName()
         {
@@ -177,10 +191,13 @@ namespace New_DISA_Project.ProjectCreators
                 {
                     case 1:
                         this.ClientDirectory = Consts.ProjectCreator.CLIENT_DIR_XYLEM;
+                        this.ClientName = "XYLEM";
                         break;
 
                     case 2:
                         this.ClientDirectory = Consts.ProjectCreator.CLIENT_DIR_JABIL;
+                        this.ClientName = "JABIL";
+
                         break;
 
                     default:
@@ -208,11 +225,6 @@ namespace New_DISA_Project.ProjectCreators
         public void CreatesDirectories()
         {
             string stringDirectory; // Add backslash via a for loop, add all strings in an array to do this.
-
-            //for (int i = 0; i < length; i++)
-            //{
-
-            //}
 
             stringDirectory = this.mainDirectory + @"\" + this.clientDirectory + @"\" + this.projectName;
             //Console.WriteLine(stringDirectory);

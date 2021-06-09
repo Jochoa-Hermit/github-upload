@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Consts.cs" />
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Interfaces\ISelector.cs" />
     <Compile Include="ProjectCreators\ProjectCreator.cs" />
     <Compile Include="ClientProjects\ClientProject.cs" />
     <Compile Include="ClientProjects\JabilProject.cs" />

@@ -5,16 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using New_DISA_Project.Interfaces;
 
 namespace New_DISA_Project.Project
 {
     class JabilProject : ClientProject
     {
-        public void AddIOSheet()
-        {
-
-        }
-        public override void ControlSelector(string projectName, string systemDir, string controlDir)
+        public new void ControlSelector(string projectName, string systemDir, string controlDir) // new keyword is used to create different implementation from inherited class
         {
             int controlSelection, continueAdding;
             bool addMore = true;
@@ -61,7 +58,7 @@ namespace New_DISA_Project.Project
                 {
                     Console.WriteLine("You have not chosen an appropriate option");
                 }
-                
+
             }
             Console.Clear();
         }
@@ -70,15 +67,20 @@ namespace New_DISA_Project.Project
         {
 
             // Instaed of using whole first directory, it just uses systemDir, and to whatever directoryit finds it adds to systemDir
-            CopyFilesRecursively(@"C:\Users\DISA_Lenovo\Documents\DISA\RECURSOS\Sistema\Jabil Test Project\Sistema", systemDir);
+            CopyFilesRecursively(Consts.ClientProject.JBTEST_DIRECTORY, systemDir);
+
             // Gets all files from the jabil test script directory
 
             // Should replace all files that contain "nameHere" with the project Name
-            foreach (string fileName in Directory.GetFiles((controlDir + @"\Jabil Test Scripts\"), "*.*", SearchOption.AllDirectories))
+            if (Consts.ClientProject.JBTEST_DIRECTORY.Contains("Jarvi"))
             {
-                if(fileName.Contains("nameHere"))
+                // Solo cambiar nombres si se esta usando laptop de Disa
+                foreach (string fileName in Directory.GetFiles((controlDir + @"\Jabil Test Scripts\"), "*.*", SearchOption.AllDirectories))
                 {
-                    File.Move(fileName, fileName.Replace("nameHere", projectName));
+                    if (fileName.Contains("nameHere"))
+                    {
+                        File.Move(fileName, fileName.Replace("nameHere", projectName));
+                    }
                 }
             }
         }
@@ -87,7 +89,5 @@ namespace New_DISA_Project.Project
         {
 
         }
-
-        
     }
 }
