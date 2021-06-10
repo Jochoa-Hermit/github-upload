@@ -30,6 +30,7 @@ namespace New_DISA_Project
                     newClientProject = new XylemProject(); // implement interface in xylem class
                     break;
                 case "JABIL":
+                    Console.WriteLine("here");
                     newClientProject = new JabilProject();
                     break;
                 default:
@@ -39,7 +40,7 @@ namespace New_DISA_Project
             newClientProject.AddIOSheet((newProject.ProjectDocDirectory + $@"\F-DIS-003 Formato IO'S {newProject.ProjectName}.xlsx")); // we cant just provide the directory
             newClientProject.ControlSelector(newProject.ProjectName, newProject.SystemDirectory, newProject.ControlDirectory);
 
-
+            Console.WriteLine("Any key to continue");
             Console.ReadLine();
         }
     }

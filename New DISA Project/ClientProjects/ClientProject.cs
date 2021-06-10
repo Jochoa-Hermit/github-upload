@@ -33,9 +33,9 @@ namespace New_DISA_Project.ClientProjects
 
         //**************************Control Methods**************************//
         // Implemented as an interface
-        public void ControlSelector(string projectName, string systemDir, string controlDir)
+        public virtual void ControlSelector(string projectName, string systemDir, string controlDir)
         {
-            
+            Console.WriteLine("Some Implementation");
         }
 
         //******************************************************************//
@@ -43,12 +43,6 @@ namespace New_DISA_Project.ClientProjects
         //----------------------------------------------------------------------------------------//
 
         //**************************Documentation Methods**************************//
-        public void DocumentationSelector()
-        {
-
-            
-
-        }
 
         public virtual void AddIOSheet(string directory)
         {

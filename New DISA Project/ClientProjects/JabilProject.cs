@@ -11,7 +11,7 @@ namespace New_DISA_Project.Project
 {
     class JabilProject : ClientProject
     {
-        public new void ControlSelector(string projectName, string systemDir, string controlDir) // new keyword is used to create different implementation from inherited class
+        public override void ControlSelector(string projectName, string systemDir, string controlDir) // new keyword is used to create different implementation from inherited class
         {
             int controlSelection, continueAdding;
             bool addMore = true;
