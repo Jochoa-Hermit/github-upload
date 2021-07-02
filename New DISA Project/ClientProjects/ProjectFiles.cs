@@ -10,21 +10,38 @@ using New_DISA_Project.Interfaces;
 
 namespace New_DISA_Project.ClientProjects
 {
-    public class ClientProject : ISelector
-    { 
+    public class ProjectFiles : ISelector
+    {
+        //**************************Fields**************************//
+        private string projectName = null;
+
+
+
         //**************************Fields**************************//
 
+        //**************************Properties**************************//
+        public string ProjectName
+        {
+            get
+            {
+                return this.projectName;
+            }
+            set
+            {
+                this.projectName = value;
+            }
+        }
 
 
 
-        //**************************Fields**************************//
+        //**************************Properties**************************//
 
         //----------------------------------------------------------------------------------------//
 
         //**************************Constructors**************************//
-        public ClientProject()
+        public ProjectFiles(string _projectName)
         {
-
+            this.ProjectName = _projectName;
         }
 
         //****************************************************************//
@@ -47,6 +64,7 @@ namespace New_DISA_Project.ClientProjects
         public virtual void AddIOSheet(string directory)
         {
             int docSelector = 0;
+            string ioDirectoryFile = null;
 
             Console.WriteLine("Would You Like to Add an IO Sheet?\n1. Yes\n2. No");
             docSelector = Int32.Parse(Console.ReadLine());
@@ -55,12 +73,16 @@ namespace New_DISA_Project.ClientProjects
             {
                 case 1:
                     // Thinkpad // This is set from Const namespace
-                    File.Copy(Consts.ClientProject.IO_SHEET, directory);
+                    ioDirectoryFile = Directory.GetCurrentDirectory() + Consts.ClientProject.IO_SHEET;
+                    File.Copy((ioDirectoryFile), directory.Replace(ioDirectoryFile, directory), true);
+                    // Rename the file to project name
+                    File.Move(directory, directory.Replace(Consts.ClientProject.NAME_REPLACE_FLAG, this.projectName));
+
 
                     break;
                 case 2:
 
-                    break;  
+                    break;
                 default:
                     break;
             }
@@ -92,7 +114,7 @@ namespace New_DISA_Project.ClientProjects
         protected void CopyFilesRecursively(string sourcePath, string targetPath)
         {
             foreach (string dirPath in Directory.GetDirectories(sourcePath, "*", SearchOption.AllDirectories))
-            {  
+            {
                 //Console.WriteLine(dirPath);
                 Directory.CreateDirectory(dirPath.Replace(sourcePath, targetPath));
             }

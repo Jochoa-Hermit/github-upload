@@ -10,14 +10,14 @@ using New_DISA_Project.Project;
 // Namespace and project name should not have the same name
 namespace New_DISA_Project.ProjectCreators
 {
-    public class ProjectCreator
+    public class DisaProject
     {
         const string escBSlash = @"\";
 
         // String Fields
-        private string mainDirectory;
-        private string clientDirectory;
-        private string clientName;
+        private string mainDirectory; // This Directory should point to the project folder
+        private string clientDirectory; // Is the specific name for the client
+        private string clientName; // 
         // Documentation Fields
         private string docDirectory;
         private string projectDocDirectory;
@@ -161,19 +161,19 @@ namespace New_DISA_Project.ProjectCreators
             }
         }
 
-        public ProjectCreator()
+        public DisaProject()
         {
             this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
             this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
             this.containsControl = Consts.ProjectCreator.CONTAINS_CONTROL; // Only create system directory if this is true;
         }
 
-        public ProjectCreator(bool containsControl)
-        {
-            //this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
-            //this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
-            //this.containsControl = containsControl;
-        }
+        //public ProjectCreator(bool containsControl)
+        //{
+        //    //this.mainDirectory = Consts.ProjectCreator.MAIN_DIRECTORY;
+        //    //this.clientDirectory = Consts.ProjectCreator.CLIENT_DIRECTORY;
+        //    //this.containsControl = containsControl;
+        //}
 
         public void SetClienName()
         {

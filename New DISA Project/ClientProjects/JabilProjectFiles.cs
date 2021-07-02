@@ -9,8 +9,14 @@ using New_DISA_Project.Interfaces;
 
 namespace New_DISA_Project.Project
 {
-    class JabilProject : ClientProject
+    class JabilProjectFiles : ProjectFiles
     {
+        // implement constructor this way due to inheritance?? 
+        public JabilProjectFiles(string _projectName) : base(_projectName)
+        {
+
+        }
+
         public override void ControlSelector(string projectName, string systemDir, string controlDir) // new keyword is used to create different implementation from inherited class
         {
             int controlSelection, continueAdding;
@@ -67,20 +73,17 @@ namespace New_DISA_Project.Project
         {
 
             // Instaed of using whole first directory, it just uses systemDir, and to whatever directoryit finds it adds to systemDir
-            CopyFilesRecursively(Consts.ClientProject.JBTEST_DIRECTORY, systemDir);
+            CopyFilesRecursively((Directory.GetCurrentDirectory() + Consts.ClientProject.JBTEST_DIRECTORY), systemDir);
 
             // Gets all files from the jabil test script directory
 
             // Should replace all files that contain "nameHere" with the project Name
-            if (Consts.ClientProject.JBTEST_DIRECTORY.Contains("Jarvi"))
+
+            foreach (string fileName in Directory.GetFiles((controlDir + @"\Jabil Test Scripts\"), "*.*", SearchOption.AllDirectories))
             {
-                // Solo cambiar nombres si se esta usando laptop de Disa
-                foreach (string fileName in Directory.GetFiles((controlDir + @"\Jabil Test Scripts\"), "*.*", SearchOption.AllDirectories))
+                if (fileName.Contains(Consts.ClientProject.NAME_REPLACE_FLAG))
                 {
-                    if (fileName.Contains("nameHere"))
-                    {
-                        File.Move(fileName, fileName.Replace("nameHere", projectName));
-                    }
+                    File.Move(fileName, fileName.Replace(Consts.ClientProject.NAME_REPLACE_FLAG, projectName));
                 }
             }
         }

@@ -7,8 +7,11 @@ using New_DISA_Project.ClientProjects;
 
 namespace New_DISA_Project.Project
 {
-    class XylemProject : ClientProject
+    class XylemProjectFiles : ProjectFiles
     {
+        public XylemProjectFiles(string _projectName) : base(_projectName)
+        {
 
+        }
     }
 }

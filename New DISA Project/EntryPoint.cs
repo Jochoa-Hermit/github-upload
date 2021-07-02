@@ -14,11 +14,10 @@ namespace New_DISA_Project
     class EntryPoint
     {
         static void Main(string[] args)
-        { 
+        {
             //*********Application Variables*********//
-
-            ProjectCreator newProject = new ProjectCreator();
-            ISelector newClientProject = null; // We had to instantiate this as an interface to be able to use methods outside of instansiation of object
+            DisaProject newProject = new DisaProject();
+            ISelector newProjectFiles = null; // We had to instantiate this as an interface to be able to use methods outside of instansiation of object
 
             newProject.SetClienName();
             newProject.SetProjectName();
@@ -27,18 +26,18 @@ namespace New_DISA_Project
             switch (newProject.ClientName)
             {
                 case "XYLEM":
-                    newClientProject = new XylemProject(); // implement interface in xylem class
+                    newProjectFiles = new XylemProjectFiles(newProject.ProjectName); // implement interface in xylem class
                     break;
                 case "JABIL":
                     Console.WriteLine("here");
-                    newClientProject = new JabilProject();
+                    newProjectFiles = new JabilProjectFiles(newProject.ProjectName);
                     break;
                 default:
                     break;
             }
 
-            newClientProject.AddIOSheet((newProject.ProjectDocDirectory + $@"\F-DIS-003 Formato IO'S {newProject.ProjectName}.xlsx")); // we cant just provide the directory
-            newClientProject.ControlSelector(newProject.ProjectName, newProject.SystemDirectory, newProject.ControlDirectory);
+            newProjectFiles.AddIOSheet((newProject.ProjectDocDirectory + $@"\F-DIS-003 Formato IO'S {newProject.ProjectName}.xlsx")); // we cant just provide the directory
+            newProjectFiles.ControlSelector(newProject.ProjectName, newProject.SystemDirectory, newProject.ControlDirectory);
 
             Console.WriteLine("Any key to continue");
             Console.ReadLine();
