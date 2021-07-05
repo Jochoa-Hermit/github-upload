@@ -36,7 +36,8 @@ namespace New_DISA_Project
                     break;
             }
 
-            newProjectFiles.AddIOSheet((newProject.ProjectDocDirectory + $@"\F-DIS-003 Formato IO'S {newProject.ProjectName}.xlsx")); // we cant just provide the directory
+            newProjectFiles.AddIOSheet((newProject.ProjectDocDirectory + @"\" + Consts.ClientProject.IO_SHEET)); // we cant just provide the directory
+            newProjectFiles.AddManual((newProject.ProjectDocDirectory + @"\" + Consts.ClientProject.MANUAL));
             newProjectFiles.ControlSelector(newProject.ProjectName, newProject.SystemDirectory, newProject.ControlDirectory);
 
             Console.WriteLine("Any key to continue");

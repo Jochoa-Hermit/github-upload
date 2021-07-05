@@ -73,7 +73,9 @@ namespace New_DISA_Project.ClientProjects
             {
                 case 1:
                     // Thinkpad // This is set from Const namespace
-                    ioDirectoryFile = Directory.GetCurrentDirectory() + Consts.ClientProject.IO_SHEET;
+                    ioDirectoryFile = Directory.GetCurrentDirectory() + Consts.ClientProject.DOC_DISA + Consts.ClientProject.IO_SHEET;
+                    Console.WriteLine(ioDirectoryFile);
+                    Console.WriteLine(directory);
                     File.Copy((ioDirectoryFile), directory.Replace(ioDirectoryFile, directory), true);
                     // Rename the file to project name
                     File.Move(directory, directory.Replace(Consts.ClientProject.NAME_REPLACE_FLAG, this.projectName));
@@ -89,9 +91,29 @@ namespace New_DISA_Project.ClientProjects
             Console.Clear();
         }
 
-        public void AddManual()
+        public void AddManual(string directory)
         {
+            int docSelector = 0;
+            string manualDirectoryFile = null;
 
+            Console.WriteLine("Would you like to add a Manual?\n1. Yes\n2. No");
+            docSelector = Int16.Parse(Console.ReadLine());
+
+            switch (docSelector)
+            {
+                case 1:
+                    manualDirectoryFile = Directory.GetCurrentDirectory() + Consts.ClientProject.DOC_DISA + Consts.ClientProject.MANUAL;
+                    File.Copy(manualDirectoryFile, directory);
+                    File.Move(directory, directory.Replace(Consts.ClientProject.NAME_REPLACE_FLAG, this.projectName));
+                    break;
+
+                case 2:
+
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         public void AddElectricalDiagram()

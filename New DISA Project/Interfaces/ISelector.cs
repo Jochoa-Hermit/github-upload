@@ -10,7 +10,9 @@ namespace New_DISA_Project.Interfaces
     {
         void ControlSelector(string projectName, string systemDir, string controlDir);
 
+        // Create a method to add file, but in the implementation of the methods below use the proper const
         void AddIOSheet(string _directory);
+        void AddManual(string _directory);
 
     }
 }

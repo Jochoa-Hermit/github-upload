@@ -23,14 +23,18 @@ namespace New_DISA_Project
         {
             public const string NAME_REPLACE_FLAG = "nameHere";
             // Documentation Directory Constants
-            public const string IO_SHEET = @"\Directorios_Disa\Documentacion Disa\F-DIS-003 Formato nameHere IO_S.xlsx";
-            //public const string IO_SHEET = @"C:\Users\jarvi\Documents\DISA\ARCHIVOS DISA\Archivo de Texto.txt"; // Thinkpad
-            //public const string IO_SHEET = @"C:\Users\DISA_Lenovo\Documents\DISA\RECURSOS\Documentacion Disa\F-DIS-003 Formato IO'S.xlsx"; // Disa
+            public const string DOC_DISA = @"\Directorios_Disa\Documentacion Disa\";
+            public const string IO_SHEET = @"F-DIS-003 Formato nameHere IO_S.xlsx";
+            public const string MANUAL = @"MANUAL - nameHere.docx";
+
+            public const string DOC_DIAGRAM = @"\Directorios\Documentacion Disa\Diagramas\Diagramas\";
+            public const string PNEUM_DIAGRAM = @"Diagrama Neumatico - nameHere.vsd";
+            public const string ELECTRIC_DIAGRAM = @"Diagrama Electrico - nameHere.vsd";
+            public const string FUNCTION_DIAGRAM = @"Funcionamiento - nameHere.vsd";
+
 
             // Jabil Test Directory
             public const string JBTEST_DIRECTORY = @"\Directorios_Disa\Sistema\Jabil Test Project\Sistema";
-            //public const string JBTEST_DIRECTORY = @"C:\Users\jarvi\Documents\Test Directory"; // Thinkpad
-            //public const string JBTEST_DIRECTORY = @"C:\Users\DISA_Lenovo\Documents\DISA\RECURSOS\Sistema\Jabil Test Project\Sistema";
 
 
 
